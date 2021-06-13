@@ -1,0 +1,57 @@
+//
+//  pruebaMichaelUrreaTests.swift
+//  pruebaMichaelUrreaTests
+//
+//  Created by Michaelu on 13/06/21.
+//
+
+import XCTest
+@testable import pruebaMichaelUrrea
+
+class pruebaMichaelUrreaTests: XCTestCase {
+    
+    func test(){
+        
+            let expectation = XCTestExpectation(description: "Acromine REST Service provides a RESTful interface, where you can use the Acromine dictionary from your client programs.")
+            
+            let url = URL(string: "http://www.nactem.ac.uk/software/acromine/dictionary.py?sf=BBF")!
+            
+            
+            let dataTask = URLSession.shared.dataTask(with: url) { (data, _, _) in
+                
+                
+                XCTAssertNotNil(data, "No data was downloaded.")
+                
+                
+                expectation.fulfill()
+                
+            }
+            
+            
+            dataTask.resume()
+            
+            
+            wait(for: [expectation], timeout: 10.0)
+    }// end function
+
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testExample() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+
+    func testPerformanceExample() throws {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
+
+}
